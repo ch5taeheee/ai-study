@@ -88,24 +88,24 @@ if menu == "📇 명함 스캐너":
 # ==========================================
 # 메뉴 2: 맛집 추천 AI 화면
 # ==========================================
-elif menu == "🍱 맛집 추천 AI":
-    st.title("🍱 네이버 지도 기반 맛집 추천")
-    st.write("가고 싶은 지역과 메뉴를 입력하면 네이버 지도로 연결해 드려요!")
+# elif menu == "🍱 맛집 추천 AI":
+#     st.title("🍱 네이버 지도 기반 맛집 추천")
+#     st.write("가고 싶은 지역과 메뉴를 입력하면 네이버 지도로 연결해 드려요!")
     
-    # 지역 및 메뉴 입력창
-    col1, col2 = st.columns(2)
-    with col1:
-        location = st.text_input("📍 지역 입력", placeholder="예: 강남역")
-    with col2:
-        food_type = st.text_input("🍕 음식 종류", placeholder="예: 초밥")
+#     # 지역 및 메뉴 입력창
+#     col1, col2 = st.columns(2)
+#     with col1:
+#         location = st.text_input("📍 지역 입력", placeholder="예: 강남역")
+#     with col2:
+#         food_type = st.text_input("🍕 음식 종류", placeholder="예: 초밥")
 
-    if st.button("🔍 맛집 검색하기"):
-        if location and food_type:
-            search_query = f"{location} {food_type} 맛집"
-            # 네이버 지도 검색 URL
-            naver_map_url = f"https://map.naver.com/v5/search/{search_query}"
+#     if st.button("🔍 맛집 검색하기"):
+#         if location and food_type:
+#             search_query = f"{location} {food_type} 맛집"
+#             # 네이버 지도 검색 URL
+#             naver_map_url = f"https://map.naver.com/v5/search/{search_query}"
             
-            st.success(f"'{location}' 주변의 '{food_type}' 맛집을 검색합니다.")
-            st.markdown(f'[네이버 지도에서 "{search_query}" 검색 결과 보기]({naver_map_url})')
-        else:
-            st.warning("지역과 음식 종류를 모두 입력해 주세요!")
+#             st.success(f"'{location}' 주변의 '{food_type}' 맛집을 검색합니다.")
+#             st.markdown(f'[네이버 지도에서 "{search_query}" 검색 결과 보기]({naver_map_url})')
+#         else:
+#             st.warning("지역과 음식 종류를 모두 입력해 주세요!")
