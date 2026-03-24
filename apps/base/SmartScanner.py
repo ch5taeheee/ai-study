@@ -5,6 +5,11 @@ from PIL import Image
 import ollama  # Ollama 라이브러리 추가
 import json
 import re
+from Utils import show_user_sidebar
+
+data = st.session_state
+
+show_user_sidebar(data)
 
 # 1. 페이지 설정
 st.set_page_config(page_title="로컬 AI 명함 스캐너", layout="wide")
