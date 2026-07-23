@@ -2,6 +2,7 @@ import streamlit as st
 from apps.AppLogin import appLogin
 from Utils import show_user_sidebar, navigate_to
 
+
 if 'current_page' not in st.session_state:
     st.session_state['current_page'] = "Main"
 
@@ -20,7 +21,6 @@ if st.session_state['current_page'] == "Main":
     
     if st.button("로그인하러 가기"):
         navigate_to("AppLogin")
-
 
 # 로그인 페이지
 elif st.session_state['current_page'] == "AppLogin":

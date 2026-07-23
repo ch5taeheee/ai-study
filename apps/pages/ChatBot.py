@@ -3,10 +3,10 @@ import pdfplumber
 import ollama
 from Utils import show_user_sidebar
 
-
+# show_user_sidebar("")
 
 def chatbot():
-    show_user_sidebar("")
+    # show_user_sidebar("")
     
     # 1. PDF에서 텍스트를 뽑아내는 함수
     def extract_pdf_text(pdf_file):
