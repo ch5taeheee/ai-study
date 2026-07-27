@@ -2,22 +2,24 @@ import { useState } from "react";
 import api from "../api";
 
 export default function SmartScanner() {
-  const [preview, setPreview] = useState(null);
-  const [rawText, setRawText] = useState("");
-  const [fields, setFields] = useState(null);
+  const [preview, setPreview] = useState(null); // 업로드한 이미지 미리보기용 URL
+  const [rawText, setRawText] = useState("");   // OCR이 읽어낸 원본 텍스트
+  const [fields, setFields] = useState(null);   // LLM이 정리해준 필드(회사명/이름 등)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // 파일 선택하자마자 바로 업로드 -> OCR -> LLM 순서로 진행 (버튼 따로 없음)
   const handleFile = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    setPreview(URL.createObjectURL(file));
+    setPreview(URL.createObjectURL(file)); // 브라우저에서 로컬 미리보기 (서버 왕복 없이 즉시 표시)
     setFields(null);
     setRawText("");
     setError("");
     setLoading(true);
 
+    // 파일은 JSON이 아니라 FormData(multipart)로 보내야 FastAPI의 UploadFile이 받을 수 있음
     const formData = new FormData();
     formData.append("file", file);
 
@@ -59,6 +61,7 @@ export default function SmartScanner() {
         </div>
       )}
 
+      {/* LLM이 뽑아준 값들을 수정 가능한 입력창에 채워서 보여줌 (원래 Streamlit 버전과 동일한 UX) */}
       {fields && (
         <div style={{ marginTop: 16, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 600 }}>
           <label>

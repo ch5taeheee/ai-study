@@ -12,6 +12,7 @@ export default function ChatBot() {
   const handleAsk = async () => {
     setLoading(true);
     setAnswer("");
+    // PDF 파일 + 질문 텍스트를 함께 보내야 하므로 FormData 사용
     const formData = new FormData();
     formData.append("file", file);
     formData.append("question", question);
@@ -33,6 +34,7 @@ export default function ChatBot() {
 
       <input type="file" accept="application/pdf" onChange={(e) => setFile(e.target.files[0])} />
 
+      {/* 파일을 올리기 전에는 질문 입력창 자체를 안 보여줌 (원래 Streamlit 버전 흐름 그대로) */}
       {file && (
         <>
           <br />

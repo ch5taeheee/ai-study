@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../api";
 
+// 선택지들을 컴포넌트 밖에 상수로 빼둠 - 렌더링될 때마다 새로 안 만들어져도 됨
 const MOODS = ["좋음", "나쁨", "신남", "우울함", "짜증남", "슬픔"];
 const CATEGORIES = ["한식", "중식", "일식"];
 const LOCATIONS = ["서울", "대전", "부산", "대구", "경기도"];
@@ -12,6 +13,7 @@ export default function MenuBot() {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // 세 항목 다 골라야 추천 버튼 활성화
   const isReady = mood && category && location;
 
   const handleRecommend = async () => {

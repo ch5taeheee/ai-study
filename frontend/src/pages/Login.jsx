@@ -12,10 +12,15 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  // 화면이 처음 뜰 때 딱 한 번, 회사 목록을 백엔드에서 받아와 드롭다운 채우기
   useEffect(() => {
-    api.get("/auth/companies").then((res) => setCompanies(res.data.companies));
+    api.get("/auth/companies").then((res) => {
+      console.log(res)
+      setCompanies(res.data.companies);
+    });
   }, []);
 
+  // 세 값이 다 채워져야 로그인 버튼 활성화 (원래 Streamlit의 is_not_ready 로직)
   const isReady = companyName && employeeId && employeeName;
 
   const handleLogin = async () => {
@@ -26,9 +31,10 @@ export default function Login() {
         employee_id: employeeId,
         employee_name: employeeName,
       });
-      login(res.data);
-      navigate("/chatbot");
+      login(res.data); // AuthContext에 로그인 정보 저장
+      navigate("/chatbot"); // 로그인 성공하면 첫 화면(챗봇)으로 이동
     } catch (err) {
+      // 백엔드가 401과 함께 보낸 에러 메시지를 그대로 보여줌
       setError(err.response?.data?.detail ?? "로그인에 실패했습니다.");
     }
   };
@@ -41,6 +47,7 @@ export default function Login() {
       <select value={companyName} onChange={(e) => setCompanyName(e.target.value)}>
         <option value="">Company Name</option>
         {companies.map((c) => (
+          
           <option key={c} value={c}>
             {c}
           </option>
